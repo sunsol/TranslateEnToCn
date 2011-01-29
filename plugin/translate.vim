@@ -45,7 +45,11 @@ def Trans_word(word):
                        ('q',word),
                        ('langpair',langpair),) )
     url=base_url+params
-    content=urlopen(url).read()
+    try:
+        content=urlopen(url).read()
+    except:
+        print 'GFW fuck it'
+	return
     start_idx=content.find('"translatedText":"')+18
     translation=content[start_idx:]
     end_idx=translation.find('"}, "')
